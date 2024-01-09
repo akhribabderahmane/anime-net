@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*,html,body{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Plus Jakarta Sans', sans-serif;
+}
+@layer base{
+    .first-gradient{
+        @apply bg-gradient-to-tr from-stem-green-600 from-5% via-heisenberg-blue-600 via-65% to-day-blue-600 to-95% ;
+    }
+    .second-gradient{
+        @apply bg-gradient-to-bl from-stem-green-600 from-5% via-heisenberg-blue-600 via-65% to-day-blue-600 to-95% ;
+    }
+    .third-gradient{
+        @apply bg-gradient-to-tr from-stem-green-500 from-5% via-heisenberg-blue-500 via-65% to-day-blue-500 to-95% ;
+    }
+    .fourth-gradient{
+        @apply bg-gradient-to-bl from-stem-green-500 from-5% via-heisenberg-blue-500 via-65% to-day-blue-500 to-95% ;
+    }
+    .fifth-gradient{
+        @apply bg-gradient-to-bl from-stem-green-500 from-5% to-heisenberg-blue-500 to-65% ;
+    }
+    .sixth-gradient{
+        @apply bg-gradient-to-tr from-stem-green-500 from-5% to-heisenberg-blue-500 to-65% ;
+    }
+    .text-gradient1{
+        @apply  bg-clip-text text-transparent bg-gradient-to-tr from-stem-green-600 from-0% via-heisenberg-blue-600 via-45% to-day-blue-600 to-80%   ;
+    }
+    .text-gradient2{
+        @apply  bg-clip-text text-transparent bg-gradient-to-bl from-stem-green-600 from-30% via-heisenberg-blue-600 via-70% to-day-blue-600 to-95%    ;
+    }
+    .text-gradient3{
+        @apply  bg-clip-text text-transparent bg-gradient-to-tr from-stem-green-500 from-0% via-heisenberg-blue-500 via-45% to-day-blue-500 to-80%   ;
+    }
+    .text-gradient4{
+        @apply  bg-clip-text text-transparent bg-gradient-to-bl from-stem-green-500 from-40% via-heisenberg-blue-500 via-80% to-day-blue-500 to-100% ;
+    }
+    .text-gradient5{
+        @apply  bg-clip-text text-transparent bg-gradient-to-bl from-stem-green-500 from-45% to-heisenberg-blue-500 to-85% ;
+    }
+    .text-gradient6{
+        @apply  bg-clip-text text-transparent bg-gradient-to-bl  to-heisenberg-blue-500 from-35% from-stem-green-500 to-85%  ;
+    }
+    h1{
+        @apply text-4xl leading-8 ;
+    }
+    h2{
+        @apply text-3xl leading-7 ;
+    }
+    h3{
+        @apply text-2xl leading-6 ;
+    }
+    h4{
+        @apply text-xl leading-5 ;
+    }
+    h5{
+        @apply text-lg leading-4 ;
+    }
+    h6{
+        @apply text-base leading-3 ;
+    }
+}
+
+
+
