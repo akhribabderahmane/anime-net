@@ -1,10 +1,11 @@
 import './App.css'
+import SignIn from './pages/signUp'
 
 function App() {
 
   return (
-     <main>
-        <div className="text-4xl">hii abderahmane</div>
+     <main className=' min-h-screen bg-noble-black-700'>
+          <SignIn />  
      </main>
   )
 }
