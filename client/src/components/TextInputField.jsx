@@ -4,7 +4,7 @@ const TextInputField = ({ control, name, label, type, placeholder, icon }) => {
   const { field, fieldState } = useController({ control, name });
   const [isFocused, setIsFocused] = useState(false);
   return (
-    <div className="mb-4">
+    <div className="mb-4 w-full">
       <div
         className={`w-full bg-noble-black-600 rounded-lg flex flex-row gap-2 px-3 py-2 items-center text-white border-[1.5px] ${
           isFocused
