@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow:{
+         input:"0 0 0 3px #65BEDA55"
+      },
       colors:{
         "noble-black":{
           100:"#E8E9E9",
