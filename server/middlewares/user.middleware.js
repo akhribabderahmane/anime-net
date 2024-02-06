@@ -2,7 +2,7 @@ import { isValidObjectId } from "mongoose";
 import userModel from "../models/user.js";
 import resetTokenModel from "../models/resetToken.js";
 import { ObjectId } from "mongodb";
-
+ 
 const isResetTokenValid=async (req,res,next)=>{
   const {token,id}=req.query;
   if(!token || !id ) {

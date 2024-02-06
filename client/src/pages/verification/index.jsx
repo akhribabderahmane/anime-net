@@ -6,11 +6,51 @@ import { DevTool } from "@hookform/devtools";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+import axios from "axios";
+
+const schema=yup.object({
+  chiffre01:yup.number().lessThan(10).moreThan(-1),
+  chiffre02:yup.number().lessThan(10).moreThan(-1),
+  chiffre03:yup.number().lessThan(10).moreThan(-1),
+  chiffre04:yup.number().lessThan(10).moreThan(-1),
+}).required();
+
 const Verification = () => {
   const navigate = useNavigate();
   const handleLoginClick = () => {
     navigate("/signin");
   };
+  const {control,handleSubmit,register,formState:{isValid}}=useForm({
+    mode:"onSubmit",
+    defaultValues:{
+      chiffre01:null,
+      chiffre02:null,
+      chiffre03:null,
+      chiffre04:null,
+    },
+    resolver:yupResolver(schema),
+  })
+  const onSubmit=async (data)=> {
+    let otp="";
+    for (let index = 1; index < 5; index++) {
+        otp=otp + data[`chiffre0${index}`].toString();
+    }
+    
+    const verifyForm={
+      "userID":"65c2ad12faa7a8a00bc1263e",
+      "otp":otp,
+    }
+    console.log(verifyForm)
+    // try {
+      const response=await axios.post("http://localhost:3000/api/user/verify-email",verifyForm)
+      alert(`Account verified for ${response} ! You can now log in.`);
+    // } catch (error) {
+    //      // Handle error
+    //      console.error("Error verifying account:", response);
+    //      // Show error message to the user
+    //      alert("An error occurred while verifying your account. Please try again later.");
+    // }
+  }
   return (
     <div className=" flex flex-row h-screen">
       <section className=" flex flex-col justify-start gap-20 py-4 px-6  w-2/3">
@@ -41,7 +81,8 @@ const Verification = () => {
               Confirmation Code
             </h2>
             <div>
-              <form className=" flex flex-row gap-3">
+              <form  onSubmit={handleSubmit(onSubmit)} className=" flex flex-col items-center gap-3">
+                <div className="flex flex-row gap-3">
                 {[1, 2, 3, 4].map((num) => {
                   return (
                     <input
@@ -50,17 +91,30 @@ const Verification = () => {
                       className=" outline-none bg-noble-black-500 border-[2px] border-noble-black-400 rounded-md w-9 pl-[11px] aspect-square text-gradient5 font-semibold"
                       maxLength={1}
                       id={`digit${num}`}
+                      {...register(`chiffre0${num}`)}
                     />
                   );
                 })}
+                </div>
+                 <button
+                className={` text-day-blue-900 font-semibold  bg-stem-green-500 py-2 px-4 rounded-lg ${
+                  !isValid ? " cursor-default opacity-75" : "cursor-pointer"
+                }`}
+                disabled={!isValid}
+                type="SUBMIT"
+              >
+                verify code
+              </button>
               </form>
             </div>
-            <div>{checkMark}</div>
-            <div><CircularProgress isIndeterminate color='#363A3D' size={42} thickness={10} trackColor="#1A1D21bb" /></div>
+           
+            {/* <div>{checkMark}</div>
+            <div><CircularProgress isIndeterminate color='#363A3D' size={42} thickness={10} trackColor="#1A1D21bb" /></div> */}
           </div>
         </article>
       </section>
       <section className=" right-section3 w-1/3 rounded-t-2xl"></section>
+      <DevTool control={control}/>
     </div>
   );
 };
