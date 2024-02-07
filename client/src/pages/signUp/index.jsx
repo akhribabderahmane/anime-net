@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -8,7 +8,8 @@ import "animate.css";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
 import axios from "axios";
-
+import {useDispatch, useSelector } from "react-redux";
+import { changeUsername } from "../../data/currentUser/currentUserSlice";
 const schema = yup
   .object({
     username: yup.string().required(),
@@ -59,6 +60,12 @@ const SignUp = () => {
         alert("An error occurred while creating your account. Please try again later.");
     }
 };
+
+  const username=useSelector((state)=> state.user.data.username);
+  const dispatch=useDispatch();
+   setTimeout(() => {
+    dispatch(changeUsername("kira"));
+   }, 3000);
 
   return (
     <div className=" flex flex-row h-screen">
