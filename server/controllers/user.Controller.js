@@ -2,6 +2,7 @@ import Joi from "joi";
 import userModel from "../models/user.js";
 import bcrypt from "bcrypt";
 import jsonwebtoken from "jsonwebtoken";
+import fs from "fs";
 import {
   generateEmailTemplate,
   generateOTP,
@@ -153,8 +154,10 @@ const forgotPassword = async (req, res) => {
     email: Joi.string().email().required(),
   });
   const validationResult = validator.validate({ email });
-  if (validationResult.error){
-    return res.status(400).json({message: "validation error ",success: false,});
+  if (validationResult.error) {
+    return res
+      .status(400)
+      .json({ message: "validation error ", success: false });
   }
   const user = await userModel.findOne({ email });
   if (!user) {
@@ -162,12 +165,10 @@ const forgotPassword = async (req, res) => {
   }
   const token = await resetTokenModel.findOne({ owner: user._id });
   if (token) {
-    res
-      .status(400)
-      .json({
-        message: "only after one hour you can request for another token",
-        success: false,
-      });
+    res.status(400).json({
+      message: "only after one hour you can request for another token",
+      success: false,
+    });
   }
 
   const token2 = await createRandomBytes();
@@ -199,25 +200,21 @@ const resetPassword = async (req, res) => {
   }
   const isSamePassword = await bcrypt.compareSync(password, user.password);
   if (isSamePassword) {
-    return res
-      .status(400)
-      .json({
-        message: "you can't use the same password as the previuos one !!",
-        success: false,
-      });
+    return res.status(400).json({
+      message: "you can't use the same password as the previuos one !!",
+      success: false,
+    });
   }
   const validator = Joi.object({
     password: Joi.string().min(8).max(20).required(),
   });
   const validationResult = validator.validate({ password });
   if (validationResult.error) {
-    return res
-      .status(400)
-      .json({
-        message: "inValid password !!",
-        error: validationResult,
-        success: false,
-      });
+    return res.status(400).json({
+      message: "inValid password !!",
+      error: validationResult,
+      success: false,
+    });
   }
 
   console.log(user);
@@ -235,4 +232,107 @@ const resetPassword = async (req, res) => {
   });
   return res.json({ message: "password reset successfull", success: true });
 };
-export { login, userSignUp, verifyEmail, forgotPassword, resetPassword };
+
+const updateUsername = async (req, res) => {
+  const { username } = req.body;
+  //checking if the new username is already taken or not
+  const userInDb = await userModel.findOne({ username });
+  if (userInDb && userInDb.username !== username) {
+    return res.status(409).json({
+      message: "this username has been used by someone else ",
+      success: false,
+    });
+  }
+  //updating the username in database
+  userModel
+    .findByIdAndUpdate(req.id, { username }, { new: true })
+    .then((updatedUser) => {
+      res.json(updatedUser);
+    })
+    .catch((err) => {
+      console.log("error occured while updating the username");
+      res
+        .status(500)
+        .json({ message: "server error", error: err, success: false });
+    });
+};
+
+const updatePassword = async (req, res) => {
+  const { password } = req.body;
+  const userID = req.id;
+  const user = userModel.findOne({ _id: userID });
+  if (!user) {
+    return res.status(400).json({
+      message: "user not found",
+      success: false,
+    });
+  }
+  try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    user.updateOne({ password: hashedPassword }).exec();
+    return res.json({
+      message: "password updated successfully",
+      success: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "update password has failed",
+      error: error,
+      success: false,
+    });
+  }
+};
+
+//update  profile pic of a user
+
+const updateProfilePic = async (req, res) => {
+  const userID = req.id;
+  const file = req.file;
+  if (!file) {
+    return res.status(400).send("No file uploaded.");
+  }
+  // File uploaded successfully
+  const filePath = file.path;
+  console.log("hiii")
+  console.log("filepath :",filePath)
+  const user = await userModel.findById(userID);
+  if (!user) {
+    return res.status(400).json({
+      message: "user not found",
+      success: false,
+    });
+  }
+  // update avatar in user in database
+  try {
+    const oldFilePath = user.avatar;
+    user.avatar = filePath;
+    await user.save();
+    // Delete the old profile picture file from the server
+    if (oldFilePath) {
+      fs.unlinkSync(oldFilePath);
+    }
+    return res.json({
+      message: "user profile picture has been updated sucessfully !",
+      success: true,
+    });
+    //delete old image from the server folder
+  } catch (error) {
+    return res.status(500).json({
+      message: "updating profile picture has failed",
+      success: false,
+      error: error,
+    });
+  }
+};
+
+export {
+  login,
+  userSignUp,
+  verifyEmail,
+  forgotPassword,
+  resetPassword,
+  updateUsername,
+  updatePassword,
+  updateProfilePic
+};

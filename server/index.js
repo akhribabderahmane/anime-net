@@ -4,6 +4,7 @@ import { connectDatabase } from './config/db.config.js';
 import morgan from 'morgan'
 import userRouter from './routers/user.Router.js';
 
+
 const app = express()
 const port = 3000
 dotenv.config();
@@ -14,5 +15,5 @@ app.use(morgan("dev"));
 
 app.use("/api/user",userRouter)
 
-
+ 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
