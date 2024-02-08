@@ -8,7 +8,11 @@ import {
   verifyEmail,
   updateUsername,
   updatePassword,
-  updateProfilePic
+  updateProfilePic,
+  getProfilePic,
+  getUserInfos,
+  getAllUsers,
+  searchUser
 } from "../controllers/user.Controller.js";
 import { isResetTokenValid } from "../middlewares/user.middleware.js";
 import { upload } from "../middlewares/multerInit.js";
@@ -23,5 +27,13 @@ userRouter
   .patch("/update-username",auth,updateUsername) // only authenticated users can access this route
   .patch("/update-password",auth,updatePassword) // only authenticated users can access this route
   .patch("/update-profilePic",auth,upload.single("profilePic"),updateProfilePic) // only authenticated users can access this route
+  .get("/get-profile-picture",auth,getProfilePic) // only authenticated users can access this route
+  .get("/get-user-infos",auth,getUserInfos) // only authenticated users can access this route
+  .get("/get-users",auth,getAllUsers) // only authenticated users can access this route
+  .get("/search-users",auth,searchUser) // only authenticated users can access this route
+
+
+
+
   
 export default userRouter;
