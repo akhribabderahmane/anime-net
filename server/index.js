@@ -18,12 +18,12 @@ app.use(morgan("dev"));
 
 app.use("/api/user",userRouter)
 
-io.on('connection',(socket)=>{
-   console.log('a user connected');
-   socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-})
+// io.on('connection',(socket)=>{
+//    console.log('a user connected');
+//    socket.on('chat message', (msg) => {
+//     io.emit('chat message', msg);
+//   });
+// })
 
  
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
