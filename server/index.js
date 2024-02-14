@@ -4,6 +4,7 @@ import { createServer} from 'http'
 import {Server} from 'socket.io'
 import { connectDatabase } from './config/db.config.js';
 import morgan from 'morgan'
+import cors from 'cors';
 import userRouter from './routers/user.Router.js';
 
 const app = express()
@@ -15,15 +16,10 @@ connectDatabase();
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 app.use("/api/user",userRouter)
 
-// io.on('connection',(socket)=>{
-//    console.log('a user connected');
-//    socket.on('chat message', (msg) => {
-//     io.emit('chat message', msg);
-//   });
-// })
 
  
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

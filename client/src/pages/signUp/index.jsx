@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -7,7 +7,9 @@ import TextInputField from "./../../components/TextInputField";
 import "animate.css";
 import { useNavigate } from "react-router-dom";
 import "./signup.css";
-
+import axios from "axios";
+import {useDispatch, useSelector } from "react-redux";
+import { changeUsername } from "../../data/currentUser/currentUserSlice";
 const schema = yup
   .object({
     username: yup.string().required(),
@@ -35,7 +37,36 @@ const SignUp = () => {
     },
     resolver: yupResolver(schema),
   });
-  const onSubmit=(data)=>console.log("create account data ,",data)
+  const onSubmit = async (data) => {
+    console.log("Submitted data: ", data);
+    // Add user to the database here
+    const signUpForm = {
+        username: data.username,
+        email: data.email,
+        password: data.password,
+    };
+
+    try {
+        // Make a POST request to the server
+        const response=await axios.post("http://localhost:3000/api/user/signUp", signUpForm);
+        alert(`Account created for ${data.username}! You can now log in.`);
+        console.log("userID",response.data._id);
+
+        // Handle successful sign-up (e.g., redirect to login page)
+    } catch (error) {
+        // Handle error
+        console.error("Error creating account:", error);
+        // Show error message to the user
+        alert("An error occurred while creating your account. Please try again later.");
+    }
+};
+
+  const username=useSelector((state)=> state.user.data.username);
+  const dispatch=useDispatch();
+   setTimeout(() => {
+    dispatch(changeUsername("kira"));
+   }, 3000);
+
   return (
     <div className=" flex flex-row h-screen">
       <section className=" flex flex-col justify-start gap-20 py-4 px-6  w-2/3">
