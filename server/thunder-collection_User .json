@@ -1,0 +1,304 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "User ",
+    "dateExported": "2024-02-14T14:20:47.937Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "bfeedd58-44fb-4397-afb8-6668c8db8416",
+            "name": "authentification",
+            "containerId": "",
+            "created": "2024-01-10T10:47:34.904Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "9aa844b1-d814-44f4-b3b3-256b0aaf1d0f",
+            "name": "update information",
+            "containerId": "",
+            "created": "2024-02-07T18:43:04.565Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "7700f436-d5de-440a-b426-7e2cb97651ce",
+            "name": "get informations",
+            "containerId": "",
+            "created": "2024-02-08T12:45:38.345Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "55b9f158-564d-41a8-bb2f-a31e494e4102",
+            "name": "searching for another entities",
+            "containerId": "",
+            "created": "2024-02-08T20:38:53.628Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "71ea0c97-094f-4faf-809f-3c2df56b8570",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "bfeedd58-44fb-4397-afb8-6668c8db8416",
+            "name": "login",
+            "url": "http://localhost:3000/api/user/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-01-10T10:47:43.037Z",
+            "modified": "2024-02-14T13:43:24.128Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"messiiiii@esi.dz\",\n  \"password\": \"12345678\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "1f297205-505a-44d3-a782-5c46720eb03b",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "bfeedd58-44fb-4397-afb8-6668c8db8416",
+            "name": "sign up",
+            "url": "http://localhost:3000/api/user/signUp",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-01-10T14:13:24.723Z",
+            "modified": "2024-02-14T13:37:41.716Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"messiiiii leo\",\n  \"email\": \"messiiiii@esi.dz\",\n  \"password\": \"12345678\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2d89629a-2cee-4e2f-8ca8-43c657f71fbe",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "bfeedd58-44fb-4397-afb8-6668c8db8416",
+            "name": "verify email",
+            "url": "http://localhost:3000/api/user/verify-email",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-01-10T20:46:52.394Z",
+            "modified": "2024-02-07T18:57:12.165Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userID\":\"65c3d25042535f756a4c8e45\",\n  \"otp\":\"6718\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "305a48fd-3bc8-4988-8354-609bfe000c61",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "bfeedd58-44fb-4397-afb8-6668c8db8416",
+            "name": "forgot password",
+            "url": "http://localhost:3000/api/user/forgot-password",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-11T00:33:33.851Z",
+            "modified": "2024-01-11T16:58:36.512Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"la_akhrib\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e33bdb2a-9898-4a7a-9b33-56d098e352fb",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "bfeedd58-44fb-4397-afb8-6668c8db8416",
+            "name": "reset password",
+            "url": "http://localhost:3000/api/user/reset-password?token=35e1ee274265962c1773b0f2704eb68cf09812f33f6af3253778e4a135c8&id=65a014ec471bc49fd36a30bc",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-01-11T14:05:44.859Z",
+            "modified": "2024-01-11T16:22:01.258Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "token",
+                    "value": "35e1ee274265962c1773b0f2704eb68cf09812f33f6af3253778e4a135c8",
+                    "isPath": false
+                },
+                {
+                    "name": "id",
+                    "value": "65a014ec471bc49fd36a30bc",
+                    "isPath": false
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\":\"kira20\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "bcfbfaa7-58a1-45d9-83d2-905aa3f296d6",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "9aa844b1-d814-44f4-b3b3-256b0aaf1d0f",
+            "name": "update username",
+            "url": "http://localhost:3000/api/user/update-username",
+            "method": "PATCH",
+            "sortNum": 80000,
+            "created": "2024-02-07T18:45:00.215Z",
+            "modified": "2024-02-07T18:53:55.437Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzI5MGVlYjNlOGZlMTBhYjcyOWE4MSIsImlhdCI6MTcwNzMzMTY0NywiZXhwIjoxNzA3NDE4MDQ3fQ.i68cZA1kBxfqV0z90V4YWaSE2zvGQobvqBkfQVk1B1Q"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\":\"neymar jr\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "50d963ee-ebb3-48f4-8ae6-5220c69fdaed",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "9aa844b1-d814-44f4-b3b3-256b0aaf1d0f",
+            "name": "update password",
+            "url": "http://localhost:3000/api/user/update-password",
+            "method": "PATCH",
+            "sortNum": 90000,
+            "created": "2024-02-07T19:04:55.834Z",
+            "modified": "2024-02-08T12:43:56.499Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzNkMjUwNDI1MzVmNzU2YTRjOGU0NSIsImlhdCI6MTcwNzM5NTIxOSwiZXhwIjoxNzA3NDgxNjE5fQ.Lc4PwexiEN7cweYFWjx3VCZeMWCglG1d5vXjGlh3ryw"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"oldPassword\":\"12345678\",\n  \"password\":\"87654321\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "e1998f69-97f5-4df0-8fae-da74cc58d678",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "9aa844b1-d814-44f4-b3b3-256b0aaf1d0f",
+            "name": "update profile picture",
+            "url": "http://localhost:3000/api/user/update-profilePic",
+            "method": "PATCH",
+            "sortNum": 90000,
+            "created": "2024-02-07T19:38:57.488Z",
+            "modified": "2024-02-07T20:46:35.665Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzNkMjUwNDI1MzVmNzU2YTRjOGU0NSIsImlhdCI6MTcwNzMzODc1NSwiZXhwIjoxNzA3NDI1MTU1fQ.xdYmbxN9MxBrHVehbb6b3P9j4QXNGXw7D8tI0b81HlA"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [],
+                "files": [
+                    {
+                        "name": "profilePic",
+                        "value": "c:\\Users\\abdrahman akhrib\\Downloads\\Untitled (4).png"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "25357c46-2c2a-4033-8ef8-32f9391070e9",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "7700f436-d5de-440a-b426-7e2cb97651ce",
+            "name": "get profile picture",
+            "url": "http://localhost:3000/api/user/get-profile-picture",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2024-02-08T12:45:59.928Z",
+            "modified": "2024-02-08T13:06:51.696Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzI5MGVlYjNlOGZlMTBhYjcyOWE4MSIsImlhdCI6MTcwNzM5NjQxNSwiZXhwIjoxNzA3NDgyODE1fQ.ZhXg_RpqlYP0mkkhz2BeLfTprr0FMsJTZ7NWv7sGj0Y"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "cd838a9d-0399-45e9-829e-3451efe7058c",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "7700f436-d5de-440a-b426-7e2cb97651ce",
+            "name": "get user informations ",
+            "url": "http://localhost:3000/api/user/get-user-infos",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2024-02-08T20:04:29.753Z",
+            "modified": "2024-02-08T20:05:20.224Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzI5MGVlYjNlOGZlMTBhYjcyOWE4MSIsImlhdCI6MTcwNzQyMjA0NCwiZXhwIjoxNzA3NTA4NDQ0fQ.EdXPIk-ExvfBGTP-Odihq-8Qw12uV8xuy8loo7Ov6jM"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fde84cba-e70f-4a8a-b138-6ae3c53e9195",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "55b9f158-564d-41a8-bb2f-a31e494e4102",
+            "name": "get all users",
+            "url": "http://localhost:3000/api/user/get-users",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-02-08T20:39:03.910Z",
+            "modified": "2024-02-08T20:39:52.839Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzI5MGVlYjNlOGZlMTBhYjcyOWE4MSIsImlhdCI6MTcwNzQyMjA0NCwiZXhwIjoxNzA3NTA4NDQ0fQ.EdXPIk-ExvfBGTP-Odihq-8Qw12uV8xuy8loo7Ov6jM"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "69aeb941-8fdc-4d31-b232-dbd590bf2d85",
+            "colId": "ebf3910e-7ec0-4af5-90a1-2b4f70a01479",
+            "containerId": "55b9f158-564d-41a8-bb2f-a31e494e4102",
+            "name": "search user",
+            "url": "http://localhost:3000/api/user/search-users?name=a",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2024-02-08T20:58:23.506Z",
+            "modified": "2024-02-08T21:31:24.742Z",
+            "headers": [
+                {
+                    "name": "token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzI5MGVlYjNlOGZlMTBhYjcyOWE4MSIsImlhdCI6MTcwNzQyMjA0NCwiZXhwIjoxNzA3NTA4NDQ0fQ.EdXPIk-ExvfBGTP-Odihq-8Qw12uV8xuy8loo7Ov6jM"
+                }
+            ],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "a",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
